@@ -29,7 +29,11 @@ The hardware for this project is pretty simple, you'll just need the parts below
 * [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 * [Pimorini Speaker pHat](https://shop.pimoroni.com/products/speaker-phat) - This is the compact speaker we'll use to let the shell speak
 * A tiny USB microphone - This is a microphone. We need a tiny one so it fits in a Conch shell.
+*  LiPo Battery - This will power the Pi in the shell, you'll want something with a small physical size, but at least 700mAh capacity.
+* A tiny USB microphone - This is a microphone. We need a tiny one so it fits in a Conch shell.
+* [Adafruit PowerBoost 500 Charger](https://www.adafruit.com/product/1944) - This board allows us to power the board and charge the battery at the same time.
 * A Conch Shell - A conch shell can be bought online, but if you're lucky enough to live near a beach, you might be able to find your own (NEVER collect a shell with a living organism in it! Queen Conch are susceptible to over-fishing, habitat degrdation, and deserve happy long lives. Check with your local laws before taking a shell from the beach.) Or consider 3D printing one yourself.
+
 
 ```
 Give examples
