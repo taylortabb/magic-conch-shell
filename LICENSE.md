@@ -1,6 +1,4 @@
-Copyright 2018 Taylor Tabb
-
-All Rights Reserved
+Copyright Taylor Tabb, 2018.
 
 Permission to use, copy, modify and distribute this software and its
 documentation for any purpose and without fee is hereby granted,
