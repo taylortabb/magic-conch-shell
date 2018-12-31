@@ -13,6 +13,7 @@ pip install playsound
  -->
 
 # DO NOT FOLLOW THESE INSTRUCTIONS! THEY'RE TOTALLY INCOMPLETE AND ARE A WORK IN PROGRESS (DECEMBER 31ST 2018)
+
 # A Real Magic Conch Shell
 
 Ever wanted a Magic Conch Shell? Follow these instructions to build a Magic Conch Shell of your own.
@@ -37,7 +38,7 @@ The hardware for this project is pretty simple, you'll just need the parts below
 
 If your Raspberry Pi is already connected to Wi-Fi with SSH enabled, you can skip this step. Otherwise, your first step is to get your Raspberry Pi set up on wifi with SSH enabled. There's plenty of guides for this online. I think [this](https://learn.adafruit.com/raspberry-pi-zero-creation/install-os-on-to-sd-card) guide from Adafruit does a spectacular job!
 
-## Software Setup
+# Software Setup
 
 We'll be using Cloud Text-to-Speech API, Assistant SDK, and Snowboy to make this regular conch shell into something magic! Assistant SDK will allow the conch to respond to general inquiries, Cloud Text-to-Speech API will let us program the shell to give specific responses to questions like "what do we need to do to get out of the Kelp Forest?" and Snowboy will let us use "Magic Conch Shell" instead of "Okay Google" as the hotword.
 
@@ -91,7 +92,62 @@ Note: If the installer takes more than 5 minutes creating wheels for grpcio (in 
 
 Finally we'll get Snowboy up and running. This is pretty straight forward....
 
-### Break down into end to end tests
+## Starting the Conch Shell.
+
+Finally, we're ready to speak to the magic conch. Download the contents of this repo to you home directory, copy the files into the Magic-Conch environment, then delete the magic-conch-shell folder.
+
+``` cd /home/pi
+git clone https://github.com/taylortabb/magic-conch-shell.git
+cp -a magic-conch-shell/. /home/pi/Magic-Conch/env/bin
+rm -r magic-conch-shell
+```
+
+Then navigate to the magic conch directoy and make magic_conch.py executable
+``` 
+cd /home/pi/Magic-Conch/env/bin
+sudo chmod +x magic_conch.py
+``` 
+At this point, we can test it out! Just enter ```./magic_conch.py``` to run the script.
+
+### Test out some commands 
+"Magic Conch Shell, what's the weather like in Los Angeles?" 
+The expected outuput should be a description of the weather in LA.
+
+"Magic Conch Shell, will we ever get out of this kelp forest?"
+The expected outuput should be "maybe someday."
+
+Assuming these both work, we know Assistant SDK, Cloud Text-to-Speech API, and Snowboy are all working!
+
+Now let's shut down the system
+``` sudo shutdown now``` 
+
+## Putting it all together
+
+With the power off (unplugged) we'll want to first connect the components in the following way:
+
+|image|
+
+Note that you can leave the Conch Shell on and plugged in, or unplugged for a short duration and running on battery power.
+
+## Putting it in the shell...
+
+So now that it's all together, we've got to get it **in** the conch shell. The easiest way i've found is with double sided tape (I like 3M™ VHB™) and tweezers.
+
+Once it's in, you're good to go! Your very own Magic Conch Shell. 
+
+## Powering On
+
+To get everyhing going... 
+
+1. Plug in power (the Pi may already be on if the battery is charged). 
+2. SSH into your Pi. If you've lost track of the IP address, you can use a tool like (LanScan)[LanScan] to find the Pi on your network.
+3. Activate the virtual environment
+	```source env/bin/activate``` 
+4. Start magic-conch.py 
+	```cd /home/pi/Magic-Conch/env/bin
+	./magic-conch.py```
+
+At this point, try asking you Magic Conch Shell a question! If all seems good, you can close your SSH session. Your Magic Conch is ready to use :)
 
 ## Authors
 
