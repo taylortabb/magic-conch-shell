@@ -36,7 +36,9 @@ The hardware for this project is pretty simple, you'll just need the parts below
 
 ### Rasperry Pi Wi-Fi & SSH Setup
 
-If your Raspberry Pi is already connected to Wi-Fi with SSH enabled, you can skip this step. Otherwise, your first step is to get your Raspberry Pi set up on wifi with SSH enabled. There's plenty of guides for this online. I think [this](https://learn.adafruit.com/raspberry-pi-zero-creation/install-os-on-to-sd-card) guide from Adafruit does a spectacular job!
+If your Raspberry Pi is already connected to Wi-Fi with SSH enabled, you can skip this step. 
+
+Otherwise, your first step is to get your Raspberry Pi set up on wifi with SSH enabled. There's plenty of guides for this online. I think [this](https://learn.adafruit.com/raspberry-pi-zero-creation/install-os-on-to-sd-card) guide from Adafruit does a spectacular job!
 
 # Software Setup
 
@@ -54,7 +56,9 @@ Once that's all set up, we're ready to move on
 
 ### Google Assistant SDK for devices
 
-To get Google Assistant running, you'll want to follow Google's documentation for getting the SDK set up on a Raspberry Pi [here](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup) You'll want to start at "Set Up Hardware and Network Access" and go all the way to "Run the Sample Code." Read the rest of this section first for a few proccess notes.
+To get Google Assistant running, you'll want to follow Google's documentation for getting the SDK set up on a Raspberry Pi [here](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup) 
+
+You'll want to start at "Set Up Hardware and Network Access" and go all the way to "Run the Sample Code." Read the rest of this section first for a few proccess notes.
 
 At the "Configure and Test the Audio" step place the included .asoundrc in your home directory (/home/pi), or just type ```nano /home/pi.asoundrc``` and paste the below text.
 
