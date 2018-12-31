@@ -50,45 +50,45 @@ To use Text-to-Speech API, we'll need to install Google Cloud SDK. Google has a 
 
 Note that when you're directed to run ```gcloud init``` you'll actually want to run ```gcloud init --console-only``` 
 
-When you're promted to ```Pick cloud project to use:``` you'll most likely want to select the option to create a new project named ```magic-conch-shell```
+When you're promted to ```Pick cloud project to use:``` you'll most likely want to select the option to create a new project- name this project whatever you want, I named mine ```magic-conch-shell```
 
 Once that's all set up, we're ready to move on
 
 ### Google Assistant SDK for devices
 
-To get Google Assistant running, you'll want to follow Google's documentation for getting the SDK set up on a Raspberry Pi [here](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup) 
+To get Google Assistant running, you'll want to follow Google's documentation for installing the SDK on a Raspberry Pi [here](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup) 
 
-You'll want to start at "Set Up Hardware and Network Access" and go all the way to "Run the Sample Code." Read the rest of this section first for a few proccess notes.
+Start at "Set Up Hardware and Network Access" and go all the way to "Run the Sample Code." *Read the rest of this section first for a few proccess notes.*
 
-At the "Configure and Test the Audio" step place the included .asoundrc in your home directory (/home/pi), or just type ```nano /home/pi.asoundrc``` and paste the below text.
+* At the "Configure and Test the Audio" step place the included .asoundrc in your home directory (/home/pi), or just type ```nano /home/pi.asoundrc``` and paste the below text.
 
-```
-pcm.!default {
-  type asym
-  capture.pcm "mic"
-  playback.pcm "speaker"
-}
-pcm.mic {
-  type plug
-  slave {
-    pcm "hw:<card number>,<device number>"
-  }
-}
-pcm.speaker {
-  type plug
-  slave {
-    pcm "hw:<card number>,<device number>"
-  }
-}
-```
-When you get to the "Configure a Developer Project and Account Settings" step, you'll want to import the magic-conch-shell project we created before.
+	```
+	pcm.!default {
+	  type asym
+	  capture.pcm "mic"
+	  playback.pcm "speaker"
+	}
+	pcm.mic {
+	  type plug
+	  slave {
+	    pcm "hw:<card number>,<device number>"
+	  }
+	}
+	pcm.speaker {
+	  type plug
+	  slave {
+	    pcm "hw:<card number>,<device number>"
+	  }
+	}
+	```
+* When you get to the "Configure a Developer Project and Account Settings" step, you'll want to import the magic-conch-shell project we created before.
 
-When you get to the "Install the SDK and Sample Code" step, first creaate a folder called magic-conch-shell in the home directory.
+* When you get to the "Install the SDK and Sample Code" step, first creaate a folder called magic-conch-shell in the home directory.
 
-```mkdir Magic-Conch```
-navigate into the directory
-```cd Magic-Conch```
-then follow the instructions for Python 2.7.
+	```mkdir Magic-Conch```
+	navigate into the directory
+	```cd Magic-Conch```
+	then follow the instructions for Python 2.7.
 
 Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip install grpcio==1.9.1``` then try the "Get the package" steps again.
 
@@ -98,7 +98,7 @@ Finally we'll get Snowboy up and running. This is pretty straight forward....
 
 ## Starting the Conch Shell.
 
-Finally, we're ready to speak to the magic conch. Download the contents of this repo to you home directory, copy the files into the Magic-Conch environment, then delete the magic-conch-shell folder.
+Finally, we're ready to speak to the magic conch. Download the contents of this repo to you home directory, copy the files into the Magic-Conch environment, then delete the magic-conch-shell folder:
 
 ``` cd /home/pi
 git clone https://github.com/taylortabb/magic-conch-shell.git
@@ -106,7 +106,7 @@ cp -a magic-conch-shell/. /home/pi/Magic-Conch/env/bin
 rm -r magic-conch-shell
 ```
 
-Then navigate to the magic conch directoy and make magic_conch.py executable
+Then navigate to the magic conch directoy and make magic_conch.py executable:
 ``` 
 cd /home/pi/Magic-Conch/env/bin
 sudo chmod +x magic_conch.py
@@ -114,15 +114,17 @@ sudo chmod +x magic_conch.py
 At this point, we can test it out! Just enter ```./magic_conch.py``` to run the script.
 
 ### Test out some commands 
-"Magic Conch Shell, what's the weather like in Los Angeles?" 
+Try saying these out loud:
+
+** "Magic Conch Shell, what's the weather like in Los Angeles?" **
 The expected outuput should be a description of the weather in LA.
 
-"Magic Conch Shell, will we ever get out of this kelp forest?"
+** "Magic Conch Shell, will we ever get out of this kelp forest?" **
 The expected outuput should be "maybe someday."
 
 Assuming these both work, we know Assistant SDK, Cloud Text-to-Speech API, and Snowboy are all working!
 
-Now let's shut down the system
+Now let's shut down the system and get all the hardware assembled.
 ``` sudo shutdown now``` 
 
 ## Putting it all together
@@ -146,12 +148,11 @@ To get everyhing going...
 1. Plug in power (the Pi may already be on if the battery is charged). 
 2. SSH into your Pi. If you've lost track of the IP address, you can use a tool like (LanScan)[LanScan] to find the Pi on your network.
 3. Activate the virtual environment
-	```source env/bin/activate``` 
-4. Start magic-conch.py 
-	```cd /home/pi/Magic-Conch/env/bin
-	./magic-conch.py```
+```source env/bin/activate``` 
+4. Navigate to the correct directory: ```cd /home/pi/Magic-Conch/env/bin``` 
+4. Start magic-conch.py: ``` ./magic-conch.py```
 
-At this point, try asking you Magic Conch Shell a question! If all seems good, you can close your SSH session. Your Magic Conch is ready to use :)
+At this point, try asking you Magic Conch Shell a question! If all seems good, you can close your SSH session. **Your Magic Conch is ready to use :)**
 
 ## Authors
 
