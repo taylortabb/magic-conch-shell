@@ -15,7 +15,7 @@ pip install playsound
 
 # A Real Magic Conch Shell
 
-Ever wanted a Magic Conch Shell of your own? Follow these instructions to build a Magic Conch Shell of your own.
+Ever wanted a Magic Conch Shell? Follow these instructions to build a Magic Conch Shell of your own.
 
 ## Getting Started
 
