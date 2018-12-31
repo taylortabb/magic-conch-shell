@@ -21,23 +21,21 @@ Ever wanted a Magic Conch Shell? Follow these instructions to build a Magic Conc
 
 These instructions will get you a copy of the project up and running on your local machine, as well as get the required hardware swt up to support the project.
 
-### Hardware
+### Parts
 
-The hardware for this project is pretty simple, you'll just need the parts below:
+The hardware for this project is pretty simple! you'll just need the parts below:
 
 
 * [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
 * [Pimorini Speaker pHat](https://shop.pimoroni.com/products/speaker-phat) - This is the compact speaker we'll use to let the shell speak
-* A tiny USB microphone - This is a microphone. We need a tiny one so it fits in a Conch shell.
-*  LiPo Battery - This will power the Pi in the shell, you'll want something with a small physical size, but at least 700mAh capacity.
-* A tiny USB microphone - This is a microphone. We need a tiny one so it fits in a Conch shell.
+* USB microphone - This is a microphone. We need a very tiny one so it fits in a Conch shell. I used (https://www.amazon.com/gp/product/B01MQ2AA0X/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1)[this]
+*  LiPo Battery - This will power the Pi in the shell, you'll want something with a small physical size, but at least 700mAh capacity. Adafruit has a great selection!
 * [Adafruit PowerBoost 500 Charger](https://www.adafruit.com/product/1944) - This board allows us to power the board and charge the battery at the same time.
 * A Conch Shell - A conch shell can be bought online, but if you're lucky enough to live near a beach, you might be able to find your own (NEVER collect a shell with a living organism in it! Queen Conch are susceptible to over-fishing, habitat degrdation, and deserve happy long lives. Check with your local laws before taking a shell from the beach.) Or consider 3D printing one yourself.
 
+### Installing
 
-```
-Give examples
-```
+
 
 ### Installing
 
