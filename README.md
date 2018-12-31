@@ -1,4 +1,4 @@
-instructions
+<!-- instructions
 
 1. navigate to Magic-Conch diretory
 2. activate virtualenv: $ source env/bin/activate
@@ -10,9 +10,9 @@ googlesamples-assistant-hotword --project-id magic-conch-shell --device-model-id
 also..
 
 pip install playsound
+ -->
 
---
-
+# DO NOT FOLLOW THESE INSTRUCTIONS! THEY'RE TOTALLY INCOMPLETE AND ARE A WORK IN PROGRESS (DECEMBER 31ST 2018)
 # A Real Magic Conch Shell
 
 Ever wanted a Magic Conch Shell? Follow these instructions to build a Magic Conch Shell of your own.
@@ -23,7 +23,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Parts
 
-The hardware for this project is pretty simple! you'll just need the parts below:
+The hardware for this project is pretty simple, you'll just need the parts below:
 
 
 * [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)
@@ -33,79 +33,78 @@ The hardware for this project is pretty simple! you'll just need the parts below
 * [Adafruit PowerBoost 500 Charger](https://www.adafruit.com/product/1944) - This board allows us to power the board and charge the battery at the same time.
 * A Conch Shell - A conch shell can be bought online, but if you're lucky enough to live near a beach, you might be able to find your own (NEVER collect a shell with a living organism in it! Queen Conch are susceptible to over-fishing, habitat degrdation, and deserve happy long lives. Check with your local laws before taking a shell from the beach.) Or consider 3D printing one yourself.
 
-### Installing
+### Rasperry Pi Wi-Fi & SSH Setup
 
+If your Raspberry Pi is already connected to Wi-Fi with SSH enabled, you can skip this step. Otherwise, your first step is to get your Raspberry Pi set up on wifi with SSH enabled. There's plenty of guides for this online. I think [this](https://learn.adafruit.com/raspberry-pi-zero-creation/install-os-on-to-sd-card) guide from Adafruit does a spectacular job!
 
+## Software Setup
 
-### Installing
+We'll be using Cloud Text-to-Speech API, Assistant SDK, and Snowboy to make this regular conch shell into something magic! Assistant SDK will allow the conch to respond to general inquiries, Cloud Text-to-Speech API will let us program the shell to give specific responses to questions like "what do we need to do to get out of the Kelp Forest?" and Snowboy will let us use "Magic Conch Shell" instead of "Okay Google" as the hotword.
 
-A step by step series of examples that tell you how to get a development env running
+### Google Cloud SDK Installation (Text-to-Speech API)
 
-Say what the step will be
+To use Text-to-Speech API, we'll need to install Google Cloud SDK. Google has a reallyy straightforward quickstart guide you can follow [here](https://cloud.google.com/sdk/docs/quickstart-linux). You just need to do from the start of "Before you begin" to the end of "Initialize the SDK." 
+
+Note that when you're directed to run ```gcloud init``` you'll actually want to run ```gcloud init --console-only``` 
+
+When you're promted to ```Pick cloud project to use:``` you'll most likely want to select the option to create a new project named ```magic-conch-shell```
+
+Once that's all set up, we're ready to move on
+
+### Google Assistant SDK for devices
+
+To get Google Assistant running, you'll want to follow Google's documentation for getting the SDK set up on a Raspberry Pi [here](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup) You'll want to start at "Set Up Hardware and Network Access" and go all the way to "Run the Sample Code." Read the rest of this section first for a few proccess notes.
+
+At the "Configure and Test the Audio" step place the included .asoundrc in your home directory (/home/pi), or just type ```nano /home/pi.asoundrc``` and paste the below text.
 
 ```
-Give the example
+pcm.!default {
+  type asym
+  capture.pcm "mic"
+  playback.pcm "speaker"
+}
+pcm.mic {
+  type plug
+  slave {
+    pcm "hw:<card number>,<device number>"
+  }
+}
+pcm.speaker {
+  type plug
+  slave {
+    pcm "hw:<card number>,<device number>"
+  }
+}
 ```
+When you get to the "Configure a Developer Project and Account Settings" step, you'll want to import the magic-conch-shell project we created before.
 
-And repeat
+When you get to the "Install the SDK and Sample Code" step, first creaate a folder called magic-conch-shell in the home directory.
 
-```
-until finished
-```
+```mkdir Magic-Conch```
+navigate into the directory
+```cd Magic-Conch```
+then follow the instructions for Python 2.7.
 
-End with an example of getting some data out of the system or using it for a little demo
+Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip install grpcio==1.9.1``` then try the "Get the package" steps again.
 
-## Running the tests
+### Snowboy Set Up
 
-Explain how to run the automated tests for this system
+Finally we'll get Snowboy up and running. This is pretty straight forward....
 
 ### Break down into end to end tests
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Taylor Tabb** - [tabb.me](https://www.tabb.me/)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the CMU License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
+* Shout out to OP, AH, EKH, and MR.
 * Inspiration
 * etc
 
