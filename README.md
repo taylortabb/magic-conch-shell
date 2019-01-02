@@ -18,6 +18,17 @@ DO NOT FOLLOW THESE INSTRUCTIONS! THEY'RE TOTALLY INCOMPLETE AND ARE A WORK IN P
 
 Ever wanted a Magic Conch Shell? Follow these instructions to build a Magic Conch Shell of your own.
 
+My goal for this project was to create a real life version of a Magic Conch Shell, made famous in Spongebob Squarepants. The steps below will get you going with conch shell just like mine. 
+
+Magic Conch Shell 2.0 has all the same functionality of a regular conch shell, but has all the power of Google Assistant. Ask magic conch shell about the weather, sports scores, to controll your smart home, or almost anything else you would ask your Assistant enabled smartphone or Google Home to do.
+
+
+And, just like the Conch shell from Spongebob Squarepants, this conch responds to all the questions asked of it in the episode [Club Spongebob](http://spongebob.wikia.com/wiki/Club_SpongeBob/transcript). 
+
+
+
+Using Assistant SDK, the conch shell has essentially all the 
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine, as well as get the required hardware swt up to support the project.
