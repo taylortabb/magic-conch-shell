@@ -1,9 +1,4 @@
-Copyright 1989, 1991, 1992 by Carnegie Mellon University
-
-Derivative Work - 1996, 1998-2000
-Copyright 1996, 1998-2000 The Regents of the University of California
-
-All Rights Reserved
+Copyright Taylor Tabb, 2018.
 
 Permission to use, copy, modify and distribute this software and its
 documentation for any purpose and without fee is hereby granted,
