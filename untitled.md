@@ -59,17 +59,8 @@ Note that you can leave the Conch Shell on and plugged in, or unplugged for a sh
 
 # Software Setup
 
-We'll be using Cloud Text-to-Speech API, Assistant SDK, and Snowboy to make this regular conch shell into something magic! Assistant SDK will allow the conch to respond to general inquiries, Cloud Text-to-Speech API will let us program the shell to give specific responses to questions like "what do we need to do to get out of the Kelp Forest?" and Snowboy will let us use "Magic Conch Shell" instead of "Okay Google" as the hotword.
+We'll be using Assistant SDK, Snowboy, Cloud Text-to-Speech API, and a couple Python modules to make this regular conch shell into magic! Assistant SDK will allow the conch to respond to general inquiries, Cloud Text-to-Speech API will let us program the shell to give specific responses to questions like "what do we need to do to get out of the Kelp Forest?" and Snowboy will let us use "Magic Conch Shell" instead of "Okay Google" as the hotword.
 
-### Google Cloud SDK Installation (Text-to-Speech API)
-
-To use Text-to-Speech API, we'll need to install Google Cloud SDK. Google has a reallyy straightforward quickstart guide you can follow [here](https://cloud.google.com/sdk/docs/quickstart-linux). You just need to do from the start of "Before you begin" to the end of "Initialize the SDK." 
-
-Note that when you're directed to run ```gcloud init``` you'll actually want to run ```gcloud init --console-only``` 
-
-When you're promted to ```Pick cloud project to use:``` you'll most likely want to select the option to create a new project- name this project whatever you want, I named mine ```magic-conch-shell```
-
-Once that's all set up, we're ready to move on
 
 ### Google Assistant SDK for devices
 
@@ -98,34 +89,41 @@ Start at "Set Up Hardware and Network Access" and go all the way to "Run the Sam
 	  }
 	}
 	```
-* When you get to the "Configure a Developer Project and Account Settings" step, you'll want to import the magic-conch-shell project we created before.
+* When you get to the "Configure a Developer Project and Account Settings" step, you'll want to import the magic-conch-shell project we created before. Ideally, follow the instructions for Python 3.
 
-* When you get to the "Install the SDK and Sample Code" step, first creaate a folder called magic-conch-shell in the home directory.
+Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip3 install grpcio==1.9.1``` then ```python -m pip install google-assistant-sdk[samples]``` 
 
-	```mkdir Magic-Conch```
-	navigate into the directory
-	```cd Magic-Conch```
-	then follow the instructions for Python 2.7.
+### Google Cloud SDK Installation (Optional)
 
-Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip3 install grpcio==1.9.1``` then ```python -m pip install google-assistant-sdk[samples]```
+
+**This step is optional-- I've already included the synthesized audio files from Cloud Text-To-Speech API, so you only need to do this step if you want to play around with TTS API yourself, or if you want to experiment with other GCP tools.**
+
+To use Text-to-Speech API, we'll need to install Google Cloud SDK. Google has a reallyy straightforward quickstart guide you can follow [here](https://cloud.google.com/sdk/docs/quickstart-linux). You just need to do from the start of "Before you begin" to the end of "Initialize the SDK." 
+
+Note that when you're directed to run ```gcloud init``` you'll actually want to run ```gcloud init --console-only``` 
+
+When you're promted to ```Pick cloud project to use:``` you'll most likely want to select the option to create a new project- name this project whatever you want, I named mine ```magic-conch-shell```
+
+Once that's all set up, we're ready to move on
 
 ### Snowboy Set Up
 
-Finally we'll get Snowboy up and running. This is pretty straight forward....
+Finally we'll get Snowboy up and running. Snowboy is an awesome tool for adding custom hotword detection. In our case, we want to replace "Okay Google..." and "Hey Google..." with "Magic Conch Shell..." 
+
+This is pretty straight forward....
+
 
 ## Starting the Conch Shell.
 
-Finally, we're ready to speak to the magic conch. Download the contents of this repo to you home directory, copy the files into the Magic-Conch environment, then delete the magic-conch-shell folder:
+Finally, we're ready to speak to the magic conch. Download the contents of this repo to you home directory:
 
 ``` cd /home/pi
 git clone https://github.com/taylortabb/magic-conch-shell.git
-cp -a magic-conch-shell/. /home/pi/Magic-Conch/env/bin
-rm -r magic-conch-shell
 ```
 
-Then navigate to the magic conch directoy and make magic_conch.py executable:
+Then make magic_conch.py executable:
 ``` 
-cd /home/pi/Magic-Conch/env/bin
+cd magic-conch-shell
 sudo chmod +x magic_conch.py
 ``` 
 At this point, we can test it out! Just enter ```./magic_conch.py``` to run the script.
@@ -133,10 +131,10 @@ At this point, we can test it out! Just enter ```./magic_conch.py``` to run the 
 ### Test out some commands 
 Try saying these out loud:
 
-** "Magic Conch Shell, what's the weather like in Los Angeles?" **
+**"Magic Conch Shell, what's the weather like in Los Angeles?"**
 The expected outuput should be a description of the weather in LA.
 
-** "Magic Conch Shell, will we ever get out of this kelp forest?" **
+**"Magic Conch Shell, will we ever get out of this kelp forest?"**
 The expected outuput should be "maybe someday."
 
 Assuming these both work, we know Assistant SDK, Cloud Text-to-Speech API, and Snowboy are all working!
@@ -158,7 +156,7 @@ To get everyhing going...
 2. SSH into your Pi. If you've lost track of the IP address, you can use a tool like (LanScan)[LanScan] to find the Pi on your network.
 3. Activate the virtual environment
 ```source env/bin/activate``` 
-4. Navigate to the correct directory: ```cd /home/pi/Magic-Conch/env/bin``` 
+4. Navigate to the correct directory: ```cd /home/pi/magic-conch-shell``` 
 4. Start magic-conch.py: ``` ./magic-conch.py```
 
 At this point, try asking you Magic Conch Shell a question! If all seems good, you can close your SSH session. **Your Magic Conch is ready to use :)**
