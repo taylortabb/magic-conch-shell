@@ -137,7 +137,7 @@ The expected outuput should be a description of the weather in LA.
 **"Magic Conch Shell, will we ever get out of this kelp forest?"**
 The expected outuput should be "maybe someday."
 
-Assuming these both work, we know Assistant SDK, Cloud Text-to-Speech API, and Snowboy are all working!
+Assuming these both work, we know Assistant SDK and Snowboy are both working!
 
 Now let's shut down the system and get all the hardware in it's final assembly.
 ``` sudo shutdown now``` 
