@@ -14,11 +14,6 @@ pip install playsound
 
 DO NOT FOLLOW THESE INSTRUCTIONS! THEY'RE TOTALLY INCOMPLETE AND ARE A WORK IN PROGRESS (DECEMBER 31ST 2018)
 
-
-Assistant first, then GCP
-
-export GOOGLE_APPLICATION_CREDENTIALS="magic-conch-shell-f53082ab5098.json" each session
-
 # A Real Magic Conch Shell
 
 Ever wanted a Magic Conch Shell? Follow these instructions to build a Magic Conch Shell of your own.
