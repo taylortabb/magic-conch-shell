@@ -54,15 +54,15 @@ If you know how to get your Raspberry Pi is connected to Wi-Fi with SSH enabled,
 Otherwise, your next step is to get your Raspberry Pi set up on wifi with SSH enabled. 
 
 Mount your microSD card, and in a Terminal, navigate to the directory. Most likely, you can just type
-'''
+```
 $ cd /Volumes/boot
-'''
+```
 create the file wpa_supplicant.conf (this will replace the RPi wifi config on boot)
-'''
+```
 $ nano wpa_supplicant.conf
-'''
+```
 past the following into the file
-'''
+```
 country=US
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
@@ -72,9 +72,9 @@ network={
        psk="password"
        key_mgmt=WPA-PSK
     }
-'''
+```
 but adjust "US" to your country code, and the psk, ssid, and key_mgmt variables to match your network. For a network without a password use this set up:
-'''
+```
 country=US
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
@@ -84,11 +84,11 @@ network={
        psk="password"
        key_mgmt=WPA-PSK
     }
-'''
+```
 save this file, close it, and then enable ssh with the following command
-'''
+```
 $ touch ssh
-'''
+```
 Now, on boot, your Pi will connect to the specified netwwork with SSH enabled! 
 
 # Hardware Setup
@@ -104,6 +104,7 @@ Note that you can leave the Conch Shell on and plugged in, or unplugged for a sh
 
 We'll be using Google AIY, Snowboy, Cloud Text-to-Speech API, and a couple Python libraries to make this regular conch shell into magic! AIY will allow the conch to respond to general inquiries with Google Assistant, Cloud Text-to-Speech API will let us generate the audio the shell will speak for specific responses to questions like "what do we need to do to get out of the Kelp Forest?" and Snowboy will let us use "Magic Conch Shell" instead of "Okay Google" as the hotword.
 
+From now on, all steps assume you are SSH into your Pi.
 
 <!-- ### Google Assistant SDK for devices
 
@@ -148,6 +149,14 @@ Note that when you're directed to run ```gcloud init``` you'll actually want to 
 When you're promted to ```Pick cloud project to use:``` you'll most likely want to select the option to create a new project- name this project whatever you want, I named mine ```magic-conch-shell```
 
 Once that's all set up, we're ready to move on
+
+### Speaker pHAT Configuration
+
+Pimorini has a simple one-line installer for the speaker pHAT, just enter:
+```
+curl -sS https://get.pimoroni.com/speakerphat | bash
+```
+And you're ready to bump some audio.
 
 ### Snowboy Set Up
 
