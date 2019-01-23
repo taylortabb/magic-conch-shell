@@ -12,7 +12,7 @@ also..
 pip install playsound
  -->
 
-DO NOT FOLLOW THESE INSTRUCTIONS! THEY'RE TOTALLY INCOMPLETE AND ARE A WORK IN PROGRESS (DECEMBER 31ST 2018)
+DO NOT FOLLOW THESE INSTRUCTIONS! THEY'RE TOTALLY INCOMPLETE AND ARE A WORK IN PROGRESS (JANUARY 23RD 2018)
 
 # A Real Magic Conch Shell
 
@@ -152,7 +152,7 @@ Once that's all set up, we're ready to move on
 
 ### Speaker pHAT Configuration
 
-Pimorini has a simple one-line installer for the speaker pHAT, just enter:
+Pimorini has a simple one-line installer for the speaker pHAT! Just enter:
 ```
 curl -sS https://get.pimoroni.com/speakerphat | bash
 ```
