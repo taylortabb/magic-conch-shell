@@ -80,9 +80,8 @@ ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
 network={
-       ssid="ssid"
-       psk="password"
-       key_mgmt=WPA-PSK
+       ssid="CMU"
+       key_mgmt=NONE
     }
 ```
 save this file, close it, and then enable ssh with the following command
