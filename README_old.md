@@ -27,7 +27,7 @@ And, just like the Conch shell from Spongebob Squarepants, this conch responds t
 
 
 
-Using Google Assistant, the conch shell has essentially all the 
+Using Assistant SDK, the conch shell has essentially all the 
 
 ## Getting Started
 
@@ -45,51 +45,14 @@ The hardware for this project is pretty simple, you'll just need the parts below
 * [Adafruit PowerBoost 500 Charger](https://www.adafruit.com/product/1944) - This board allows us to power the board and charge the battery at the same time.
 * A Conch Shell - There's a bunch of options for a Conch shell. You can 3D print one, buy one online, or if you're lucky enough to live near a beach, you might be able to find your own! If you find your own, NEVER collect a shell with a living organism in it! Queen Conch are susceptible to over-fishing, habitat degrdation, and deserve happy long lives. Check with your local laws before taking a shell from the beach.
 
-### Rasperry Pi Image, Wi-Fi, & SSH Setup
+### Rasperry Pi Wi-Fi & SSH Setup
 
-To start, you'll want to download the latest AIY image for your Pi from [here](https://github.com/google/aiyprojects-raspbian/releases). You're looking for a .img.xz file. Then you'll want to flash the image to the microSD card for the Pi-- I like using the free application [BalenaEtcher](https://www.balena.io/etcher/) for this.
+If your Raspberry Pi is already connected to Wi-Fi with SSH enabled, you can skip this step. 
 
-If you know how to get your Raspberry Pi is connected to Wi-Fi with SSH enabled, you can skip the rest of this step. 
+Otherwise, your first step is to get your Raspberry Pi set up on wifi with SSH enabled. There's plenty of guides for this online. I think [this](https://learn.adafruit.com/raspberry-pi-zero-creation/install-os-on-to-sd-card) guide from Adafruit does a spectacular job!
 
-Otherwise, your next step is to get your Raspberry Pi set up on wifi with SSH enabled. 
+From this point on, we'll assume you have access to your Pi through SSH.
 
-Mount your microSD card, and in a Terminal, navigate to the directory. Most likely, you can just type
-'''
-$ cd /Volumes/boot
-'''
-create the file wpa_supplicant.conf (this will replace the RPi wifi config on boot)
-'''
-$ nano wpa_supplicant.conf
-'''
-past the following into the file
-'''
-country=US
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-network={
-       ssid="ssid"
-       psk="password"
-       key_mgmt=WPA-PSK
-    }
-'''
-but adjust "US" to your country code, and the psk, ssid, and key_mgmt variables to match your network. For a network without a password use this set up:
-'''
-country=US
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-update_config=1
-
-network={
-       ssid="ssid"
-       psk="password"
-       key_mgmt=WPA-PSK
-    }
-'''
-save this file, close it, and then enable ssh with the following command
-'''
-$ touch ssh
-'''
-Now, on boot, your Pi will connect to the specified netwwork with SSH enabled! 
 
 # Hardware Setup
 
@@ -102,10 +65,10 @@ Note that you can leave the Conch Shell on and plugged in, or unplugged for a sh
 
 # Software Setup
 
-We'll be using Google AIY, Snowboy, Cloud Text-to-Speech API, and a couple Python libraries to make this regular conch shell into magic! AIY will allow the conch to respond to general inquiries with Google Assistant, Cloud Text-to-Speech API will let us generate the audio the shell will speak for specific responses to questions like "what do we need to do to get out of the Kelp Forest?" and Snowboy will let us use "Magic Conch Shell" instead of "Okay Google" as the hotword.
+We'll be using Assistant SDK, Snowboy, Cloud Text-to-Speech API, and a couple Python modules to make this regular conch shell into magic! Assistant SDK will allow the conch to respond to general inquiries, Cloud Text-to-Speech API will let us program the shell to give specific responses to questions like "what do we need to do to get out of the Kelp Forest?" and Snowboy will let us use "Magic Conch Shell" instead of "Okay Google" as the hotword.
 
 
-<!-- ### Google Assistant SDK for devices
+### Google Assistant SDK for devices
 
 To get Google Assistant running, you'll want to follow Google's documentation for installing the SDK on a Raspberry Pi [here](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup) 
 
@@ -134,12 +97,12 @@ Start at "Set Up Hardware and Network Access" and go all the way to "Run the Sam
 	```
 * When you get to the "Configure a Developer Project and Account Settings" step, you'll want to import the magic-conch-shell project we created before. Ideally, follow the instructions for Python 3.
 
-Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip3 install grpcio==1.9.1``` then ```python -m pip install google-assistant-sdk[samples]```  -->
+Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip3 install grpcio==1.9.1``` then ```python -m pip install google-assistant-sdk[samples]``` 
 
 ### Google Cloud SDK Installation (Optional)
 
 
-**This step is very very optional-- I've already included the synthesized audio files from Cloud Text-To-Speech API, so you only need to do this step if you want to play around with TTS API yourself, or if you want to experiment with other GCP tools.**
+**This step is optional-- I've already included the synthesized audio files from Cloud Text-To-Speech API, so you only need to do this step if you want to play around with TTS API yourself, or if you want to experiment with other GCP tools.**
 
 To use Text-to-Speech API, we'll need to install Google Cloud SDK. Google has a reallyy straightforward quickstart guide you can follow [here](https://cloud.google.com/sdk/docs/quickstart-linux). You just need to do from the start of "Before you begin" to the end of "Initialize the SDK." 
 
