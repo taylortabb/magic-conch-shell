@@ -80,7 +80,7 @@ ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
 update_config=1
 
 network={
-       ssid="CMU"
+       ssid="ssid"
        key_mgmt=NONE
     }
 ```
@@ -135,6 +135,16 @@ Start at "Set Up Hardware and Network Access" and go all the way to "Run the Sam
 * When you get to the "Configure a Developer Project and Account Settings" step, you'll want to import the magic-conch-shell project we created before. Ideally, follow the instructions for Python 3.
 
 Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip3 install grpcio==1.9.1``` then ```python -m pip install google-assistant-sdk[samples]```  -->
+### AIY Set-up 
+
+Head to google's AIY site and follow the instrucitons to (Get Credentials)[https://aiyprojects.withgoogle.com/voice/#google-assistant--get-credential].
+
+Then run
+```
+voice/assistant_grpc_demo.py
+ ```
+and follow the prompts to give permission and confirm your account. At this point, we don't expect assistant to work, so don't worry that it can't hear you. Exit the script with ```ctl+c```
+
 
 ### Google Cloud SDK Installation (Optional)
 
@@ -149,20 +159,104 @@ When you're promted to ```Pick cloud project to use:``` you'll most likely want 
 
 Once that's all set up, we're ready to move on
 
-### Speaker pHAT Configuration
+### Speaker pHAT + Microphone Configuration
 
 Pimorini has a simple one-line installer for the speaker pHAT! Just enter:
 ```
 curl -sS https://get.pimoroni.com/speakerphat | bash
 ```
-And you're ready to bump some audio.
+And you're ready to bump some audio. Test your speaker pHat with the following command
+
+```
+aplay /home/pi/Pimoroni/speakerphat/test/test.wav
+```
+
+AIY is expecting us to be using Google's Voice Bonnet for sound, so we need to make a few changes to the Pi's audio configuration. 
+```
+sudo nano /boot/config.txt
+```
+and near the bottom of the page, change the line
+```#dtparam=audio=on``` to ```dtparam=audio=on```
+
+It's possible your file may already have this configuration.
+
+Now we modify asound.conf
+```
+sudo nano /etc/asound.conf
+```
+
+and replace the content of this file with the following (Which i found thanks to [Circuit Beard!](https://circuitbeard.co.uk/))
+
+```
+pcm.!default {
+  type asym
+  capture.pcm "mic"
+  playback.pcm "speaker"
+}
+
+ctl.!default {
+    type hw
+    card 0
+}
+
+pcm.mic {
+  type plug
+  slave.pcm "hw:1,0"
+}
+
+pcm.speaker {
+  type plug
+  slave.pcm "softvol"
+}
+
+pcm.dmixer {
+    type dmix
+    ipc_key 1024
+    ipc_perm 0666
+    slave.pcm 'hw:0,0'
+    slave {
+        period_time 0
+        period_size 1024
+        buffer_size 8192
+    }
+    bindings {
+        0 0
+        1 1
+    }
+}
+
+ctl.dmixer {
+    type hw
+    card 0
+}
+
+pcm.softvol {
+    type softvol
+    slave.pcm "dmixer"
+    control {
+        name "PCM"
+        card 0
+    }    
+}
+```
 
 ### Snowboy Set Up
 
 Finally we'll get Snowboy up and running. Snowboy is an awesome tool for adding custom hotword detection. In our case, we want to replace "Okay Google..." and "Hey Google..." with "Magic Conch Shell..." 
 
-This is pretty straight forward....
+We'll be using [Snowboy API for AIY Voice Kit](https://github.com/senyoltw/custom-hotword-for-aiy-voicekit#diff-original-programaiy-voice-kit-press-button-snowboy-wakeword-program)
 
+Follow Senyoltw's steps entering each line as shown below
+```
+cd /home/pi/
+sudo apt-get install libatlas-base-dev
+git clone https://github.com/senyoltw/custom-hotword-for-aiy-voiceki
+cp -ipr custom-hotword-for-aiy-voicekit/mod AIY-projects-python/src/
+cp -ip custom-hotword-for-aiy-voicekit/assistant_grpc_demo_snowboy.py AIY-projects-python/src/examples/voice/
+cd AIY-voice-kit-python
+chmod a+x src/examples/voice/assistant_grpc_demo_snowboy.py
+```
+To create your custom "Magic Conch Shell" wake word, head to [snowboy.kitt.ai](https://snowboy.kitt.ai), make an account and.....
 
 ## Starting the Conch Shell.
 
