@@ -137,7 +137,7 @@ Start at "Set Up Hardware and Network Access" and go all the way to "Run the Sam
 Note: If the installer takes more than 5 minutes creating wheels for grpcio (in the "Get the package" step), stop the installation (ctrl+c) and install grpcio independent from the SDK ```pip3 install grpcio==1.9.1``` then ```python -m pip install google-assistant-sdk[samples]```  -->
 ### AIY Set-up 
 
-Head to google's AIY site and follow the instrucitons to (Get Credentials)[https://aiyprojects.withgoogle.com/voice/#google-assistant--get-credential].
+Head to google's AIY site and follow the instrucitons to [Get Credentials](https://aiyprojects.withgoogle.com/voice/#google-assistant--get-credential).
 
 Then run
 ```
@@ -175,7 +175,7 @@ AIY is expecting us to be using Google's Voice Bonnet for sound, so we need to m
 ```
 sudo nano /boot/config.txt
 ```
-and near the bottom of the page, change the line
+and near the bottom of the file, change the line
 ```#dtparam=audio=on``` to ```dtparam=audio=on```
 
 It's possible your file may already have this configuration.
@@ -185,7 +185,7 @@ Now we modify asound.conf
 sudo nano /etc/asound.conf
 ```
 
-and replace the content of this file with the following (Which i found thanks to [Circuit Beard!](https://circuitbeard.co.uk/))
+and replace the content of this file with the following (Which i found thanks to [Circuit Beard](https://circuitbeard.co.uk/)!)
 
 ```
 pcm.!default {
@@ -242,7 +242,7 @@ pcm.softvol {
 
 ### Snowboy Set Up
 
-Finally we'll get Snowboy up and running. Snowboy is an awesome tool for adding custom hotword detection. In our case, we want to replace "Okay Google..." and "Hey Google..." with "Magic Conch Shell..." 
+Finally we'll need to get Snowboy up and running. Snowboy is an awesome tool for adding custom hotword detection. In our case, we want to replace "Okay Google..." and "Hey Google..." with "Magic Conch Shell..." 
 
 We'll be using [Snowboy API for AIY Voice Kit](https://github.com/senyoltw/custom-hotword-for-aiy-voicekit#diff-original-programaiy-voice-kit-press-button-snowboy-wakeword-program)
 
@@ -260,7 +260,7 @@ To create your custom "Magic Conch Shell" wake word, head to [snowboy.kitt.ai](h
 
 ## Starting the Conch Shell.
 
-Finally, we're ready to speak to the magic conch. Download the contents of this repo to you home directory:
+And we're ready to speak to the magic conch! Download the contents of this repo to you home directory:
 
 ``` cd /home/pi
 git clone https://github.com/taylortabb/magic-conch-shell.git
